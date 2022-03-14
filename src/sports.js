@@ -2,9 +2,16 @@ const { connectDb } = require("../connectDb");
 
 exports.createSport = (req, res) => {
   const newGame = {
-    date: req.body.date,
-    location: req.body.location,
     name: req.body.name,
+    sport: req.body.sport,
+    playerCount: req.body.playerCount,
+    location: req.body.location,
+    date: req.body.date,
+    time: req.body.time,
+    
+    
+    
+
     // should follow database structure
   };
   const db = connectDb();
