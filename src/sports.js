@@ -8,9 +8,6 @@ exports.createSport = (req, res) => {
     location: req.body.location,
     date: req.body.date,
     time: req.body.time,
-    
-    
-    
 
     // should follow database structure
   };
@@ -28,31 +25,30 @@ exports.createSport = (req, res) => {
 };
 
 exports.getAllSports = (req, res) => {
-    const db = connectDb();
-    db.collection("sports")
+  const db = connectDb();
+  db.collection("sports")
     .get()
     .then((collection) => {
       const sports = collection.docs.map((doc) => {
-          let sport = doc.data()
-          sport.id = doc.id
-          return sport
-      })
-      res.send(sports)
+        let sport = doc.data();
+        sport.id = doc.id;
+        return sport;
+      });
+      res.send(sports);
     })
-    .catch((err) => res.status(500).send(err))
-}
+    .catch((err) => res.status(500).send(err));
+};
 
 exports.getSportsById = (req, res) => {
-    const {sportId} = req.params
-    const db = connectDb()
-    db.collection("sports")
+  const { sportId } = req.params;
+  const db = connectDb();
+  db.collection("sports")
     .doc(sportId)
     .get()
     .then((doc) => {
-        let sport = doc.data()
-        sport.id = doc.id
-        res.send(sport)
+      let sport = doc.data();
+      sport.id = doc.id;
+      res.send(sport);
     })
-    .catch((err) => res.status(500).send(err))
-}
-
+    .catch((err) => res.status(500).send(err));
+};
